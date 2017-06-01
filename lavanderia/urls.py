@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from customs.api import *
+from usuarios.api_user import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -38,5 +39,7 @@ urlpatterns = [
     url(r'^api/direccionclientes/(?P<pk>[0-9]+)/$',(DireccionClienteApi.as_view()), name='api_direccionclientes'),
     url(r'^api/rechazaclausula/$',(RechazaClausulaApi.as_view()), name='api_rechazaclausula'),
     url(r'^api/rechazaclausula/(?P<pk>[0-9]+)/$',(RechazaClausulaApi.as_view()), name='api_rechazaclausula'),
+    url(r'^api/create_user/$', UserCreate.as_view()),
+    url(r'^api/users/(?P<pk>[0-9]+)/$', UserDetail.as_view()),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]

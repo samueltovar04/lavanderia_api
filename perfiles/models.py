@@ -1,20 +1,22 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
+from django.contrib.auth.models import User
 from django.db import models
 # Create your models here.
 class Cliente(models.Model):
 
     cedula = models.IntegerField(default=0)
-    fullname = models.CharField(max_length=200)
-    email = models.CharField(max_length=200)
+    user_id = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="User",
+        related_query_name="User",
+    )
     sexo = models.CharField(max_length=1)
     telefono = models.CharField(max_length=200)
     movil = models.CharField(max_length=200)
     fecha_nacimiento = models.DateField()
     profesion = models.CharField(max_length=200)
-    reg_date = models.DateTimeField(auto_now=False, auto_now_add=True)
-    password = models.CharField(max_length=40)
     status  = models.IntegerField(default=1)
     id_dispositivo = models.CharField(max_length=200)
     latitud = models.DecimalField(max_digits=10, decimal_places=7)
